@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme */
+    --gym-bg: #F8FAFC;
+    --gym-card: #FFFFFF;
+    --gym-surface: #F1F5F9;
+    --gym-hover: #E2E8F0;
+    --gym-border: #CBD5E1;
+    --gym-text: #0F172A;
+    --gym-muted: #475569;
+    --gym-dim: #64748B;
+  }
+
+  .dark {
+    /* Dark Theme */
+    --gym-bg: #0B0F17;
+    --gym-card: #121824;
+    --gym-surface: #1A2234;
+    --gym-hover: #243048;
+    --gym-border: #27354E;
+    --gym-text: #F1F5F9;
+    --gym-muted: #8E9EB5;
+    --gym-dim: #55657E;
+  }
+
+  body {
+    background-color: var(--gym-bg);
+    color: var(--gym-text);
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gym-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gym-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gym-muted);
+}
+
+/* ============================================================
+   Physical Membership ID Card Print Engine (Front + Back Badge Sheet)
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    accent-color: exact !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute !important;
+    left: 50% !important;
+    top: 20mm !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    page-break-inside: avoid !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
